@@ -2,6 +2,8 @@
 This is a small PHP application with a web frontend to bulk import docx files into Bookstack
 The docx files are converted the phpoffice/phpword library into raw HTML, after which the HTML formatted content is being uploaded to a new page in Bookstack using the native Bookstack API.
 
+**This was a small project for my private needs and interest, I will probably not do any issue resolving.**
+
 ## Installation
 
 Clone the files onto your local/hosted webserver, something like XAMPP will work fine.
