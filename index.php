@@ -138,9 +138,9 @@
         $responseFormatted = json_encode($responseBody, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
 
         if ($statusCode === 200) {
-            $jsonResponses[] = "Pagina gemaakt: $title\n" . $responseFormatted;
+            $jsonResponses[] = "Page created: $title\n" . $responseFormatted;
         } else {
-            $jsonResponses[] = "Niet gelukt om pagina te maken: $title\n" . $responseFormatted;
+            $jsonResponses[] = "Page not created due to an error: $title\n" . $responseFormatted;
         }
     }
 
@@ -174,14 +174,14 @@
             // Get the book slug
             $bookSlug = getBookSlug($selectedBookId);
         } else {
-            echo "Selecteer een boek en minstens een Word bestand.";
+            echo "Select a book and at least one docx file.";
         }
     }
 ?>
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
-    <title>Bulk import naar Bookstack</title>
+    <title>Bulk import to Bookstack</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
@@ -206,11 +206,11 @@
             </div>
         <?php endif; ?>
 
-        <h1 class="mb-2">Bulk import Word bestanden naar Bookstack</h1>
-        <p class="text-muted mb-4">Let op: Alle geïmporteerde bestanden moeten handmatig verwijderd worden!</p>
+        <h1 class="mb-2">Bulk import Word files to Bookstack</h1>
+        <p class="text-muted mb-4">Warning: All uploaded files will need to be removed manually from Bookstack!</p>
         <form method="POST" enctype="multipart/form-data">
             <div class="mb-3">
-                <label for="book_id" class="form-label">Kies een boek:</label>
+                <label for="book_id" class="form-label">Select a book:</label>
                 <select name="book_id" id="book_id" class="form-select">
                     <?php foreach ($books as $book) : ?>
                         <option value="<?php echo $book['id']; ?>"><?php echo $book['name']; ?></option>
@@ -223,19 +223,19 @@
             </div>
 
             <div class="mb-3">
-                <label for="docx_files" class="form-label">Select DOCX Files:</label>
+                <label for="docx_files" class="form-label">Select docx files:</label>
                 <input type="file" name="docx_files[]" id="docx_files" class="form-control" accept=".docx" multiple>
             </div>
 
-            <button type="submit" class="btn btn-primary">Importeren</button>
+            <button type="submit" class="btn btn-primary">Import</button>
         </form>
 
         <!-- Display success message and button to open the book -->
         <?php if (isset($bookSlug)) : ?>
             <hr>
             <div class="mt-5">
-                <p>Import gelukt!</p>
-                <a href="<?php echo $bookstackURL . '/books/' . $bookSlug; ?>" target="_blank" class="btn btn-primary">Open boek</a>
+                <p>Import successful!</p>
+                <a href="<?php echo $bookstackURL . '/books/' . $bookSlug; ?>" target="_blank" class="btn btn-primary">Open book</a>
             </div>
         <?php endif; ?>
 
